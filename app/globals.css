@@ -20,23 +20,23 @@
 }
 
 body {
-  background-color: #fdfcfb; /* A very light "paper" cream color */
-  color: #1a1a1a;           /* Soft black for better readability */
+  background-color: #fdfcfb;
+  /* A very light "paper" cream color */
+  color: #1a1a1a;
+  /* Soft black for better readability */
 }
+
 @layer base {
   body {
-    /* 1. Point to your image in the public folder. 
-       Note: When deploying to GitHub Pages with a basePath, we must include it manually in CSS url() 
-       OR use a relative path if supported. For simplicity with Next.js export, hardcoding the repo name here. 
-    */
-    background-image: url('/the-chronicles/parchment.jpg');
-    
+    /* 1. Point to your image in the public folder */
+    background-image: var(--bg-image, url('/parchment.jpg'));
+
     /* 2. Make it repeat seamlessly */
     background-repeat: repeat;
-    
+
     /* 3. Keep it fixed so it doesn't 'slide' when scrolling text */
     background-attachment: fixed;
-    
+
     /* 4. Ensure the text remains readable against the texture */
     @apply text-slate-900;
   }
@@ -51,7 +51,7 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  box-shadow: inset 0 0 100px rgba(0,0,0,0.05);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
   pointer-events: none;
   z-index: 50;
 }

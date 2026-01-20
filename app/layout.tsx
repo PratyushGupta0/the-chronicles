@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from '@/components/Sidebar';
+import BackgroundImageHandler from '@/components/ui/BackgroundImageHandler';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex">
+        <BackgroundImageHandler />
         <Sidebar />
         {/* ml-72 pushes the content to the right of the 72-unit wide sidebar */}
         <div className="flex-1 md:ml-72 w-full min-h-screen">
