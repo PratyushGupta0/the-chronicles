@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   },
   // IMPORTANT: If your repo URL is github.com/username/the-chronicles
   // then you MUST uncomment the line below and set it to your repo name.
-  // basePath: '/the-chronicles',
+  basePath: '/the-chronicles',
 };
 
 export default nextConfig;
