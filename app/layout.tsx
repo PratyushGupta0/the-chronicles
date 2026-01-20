@@ -38,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex">
+      <body className={`flex ${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} ${cinzel.variable} antialiased`}>
         <BackgroundImageHandler />
         <Sidebar />
         <MobileNav chapters={getAllChapters()} />
