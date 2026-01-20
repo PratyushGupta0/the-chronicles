@@ -27,10 +27,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex">
         <Sidebar />
-        {/* ml-64 pushes the content to the right of the 64-unit wide sidebar */}
-        <main className="flex-1 md:ml-64 p-8 lg:p-16 max-w-4xl">
+        {/* ml-72 pushes the content to the right of the 72-unit wide sidebar */}
+        <div className="flex-1 md:ml-72 w-full min-h-screen">
           {children}
-        </main>
+        </div>
       </body>
     </html>
   );

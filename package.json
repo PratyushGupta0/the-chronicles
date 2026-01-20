@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
+    "gray-matter": "^4.0.3",
     "next": "16.1.4",
+    "next-mdx-remote": "^5.0.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "turndown": "^7.2.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
