@@ -5,16 +5,32 @@ const WhoAmI = () => {
                 <h3 className="font-serif text-4xl md:text-5xl font-bold text-amber-950 border-b-2 border-amber-900/10 pb-8 mb-10">
                     Who Am I?
                 </h3>
-                <div className="prose prose-slate prose-xl md:prose-2xl leading-relaxed">
-                    <p className="font-serif text-slate-800 mb-8 font-medium">
-                        I am the Archivist. I wander the ruins of the Old Empires, collecting the scraps of history before they turn to dust.
-                    </p>
-                    <p className="font-serif text-slate-800 font-medium">
-                        This site is a catalog of the events that shaped our broken world—a testament to the heroes who fought, and the tyrants who fell.
+
+                {/* The Archivist Persona */}
+                <div className="prose prose-slate prose-xl md:prose-2xl leading-relaxed mb-12">
+                    <p className="font-serif text-slate-900 font-medium italic">
+                        "I am an Archivist. I have spent my years travelling across our broken world with quill in hand. I have seen the good, the bad, and the ugly. The glorious, the great, the raw, the pure, the defiled, and I have written it all."
                     </p>
                 </div>
-                <div className="pt-16 flex items-center space-x-4 opacity-70">
-                    <span className="text-5xl text-amber-950 font-serif">❦</span>
+
+                <div className="flex items-center justify-center space-x-4 opacity-50 mb-12">
+                    <span className="text-3xl text-amber-950 font-serif">~ ❦ ~</span>
+                </div>
+
+                {/* The Author Persona */}
+                <div className="bg-white/40 p-8 rounded-2xl border border-amber-900/5">
+                    <p className="font-serif text-lg md:text-xl text-slate-800 leading-relaxed mb-4">
+                        Hi, I am <span className="font-bold text-amber-950">Pratyush</span>.
+                    </p>
+                    <p className="font-sans text-base md:text-lg text-slate-700 mb-6">
+                        I do Machine Learning as a <span className="font-mono text-xs bg-amber-100 px-1 py-0.5 rounded text-amber-900">$dayjob$</span>, but I enjoy world building and writing.
+                    </p>
+                    <a
+                        href="mailto:pratyushgupta102@gmail.com"
+                        className="inline-flex items-center text-amber-900 hover:text-amber-700 font-medium transition-colors border-b border-amber-900/20 hover:border-amber-900"
+                    >
+                        pratyushgupta102@gmail.com
+                    </a>
                 </div>
             </div>
         </div>

@@ -20,10 +20,17 @@ const Sidebar = async () => {
       }))
     },
     {
-      title: 'III. Maps',
+      title: 'III. Lore',
+      href: '/lore',
+      items: [
+        { label: 'The World', href: '/lore' },
+      ]
+    },
+    {
+      title: 'IV. Maps',
       href: '/maps',
       items: [
-        { label: 'World Map', href: '/maps/world' },
+        { label: 'World Map', href: '/maps' },
       ]
     }
   ];

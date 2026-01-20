@@ -8,7 +8,11 @@ import ReaderWrapper from '@/components/chapter/ReaderWrapper';
 
 // Components available in MDX files
 const components = {
-    // Add custom components here if needed in the future
+    // Force paragraph spacing explicitly - bypassing prose plugin to be safe
+    // We add 'mb-10' (40px) for significant gap.
+    p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
+        <p {...props} className="mb-10 leading-relaxed text-slate-900" />
+    ),
 };
 
 export async function generateStaticParams() {
@@ -41,9 +45,7 @@ export default async function ChapterPage({ params }: { params: Promise<{ slug: 
 
             {/* Main Content with Reader Controls */}
             <ReaderWrapper>
-                <div className="prose prose-slate max-w-none prose-p:font-inherit prose-headings:font-serif prose-blockquote:border-amber-900/40 prose-blockquote:bg-amber-50/50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:not-italic prose-blockquote:rounded-r-lg">
-                    <MDXRemote source={chapter.content} components={components} />
-                </div>
+                <MDXRemote source={chapter.content} components={components} />
             </ReaderWrapper>
 
             {/* Footer Navigation */}

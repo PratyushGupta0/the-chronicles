@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, EB_Garamond, Cinzel } from "next/font/google";
 import "./globals.css";
 import Sidebar from '@/components/Sidebar';
 import BackgroundImageHandler from '@/components/ui/BackgroundImageHandler';
@@ -11,6 +11,16 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const ebGaramond = EB_Garamond({
+  variable: "--font-garamond",
+  subsets: ["latin"],
+});
+
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
   subsets: ["latin"],
 });
 
@@ -26,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex">
+      <body className={`flex ${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} ${cinzel.variable}`}>
         <BackgroundImageHandler />
         <Sidebar />
         {/* ml-72 pushes the content to the right of the 72-unit wide sidebar */}

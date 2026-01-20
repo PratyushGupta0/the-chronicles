@@ -1,6 +1,7 @@
 import HeroSection from '@/components/home/HeroSection';
 import WhoAmI from '@/components/home/WhoAmI';
 import FlourishDivider from '@/components/ui/FlourishDivider';
+import FAQSection from '@/components/home/FAQSection';
 
 export default function Home() {
   return (
@@ -11,6 +12,8 @@ export default function Home() {
       </div>
 
       <FlourishDivider />
+
+      <FAQSection />
     </main>
   );
 }
