@@ -25,8 +25,11 @@ body {
 }
 @layer base {
   body {
-    /* 1. Point to your image in the public folder */
-    background-image: url('/parchment.jpg');
+    /* 1. Point to your image in the public folder. 
+       Note: When deploying to GitHub Pages with a basePath, we must include it manually in CSS url() 
+       OR use a relative path if supported. For simplicity with Next.js export, hardcoding the repo name here. 
+    */
+    background-image: url('/the-chronicles/parchment.jpg');
     
     /* 2. Make it repeat seamlessly */
     background-repeat: repeat;
