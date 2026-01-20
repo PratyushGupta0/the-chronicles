@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, EB_Garamond, Cinzel } from "next/font/google";
 import "./globals.css";
 import Sidebar from '@/components/Sidebar';
+import MobileNav from '@/components/MobileNav';
 import BackgroundImageHandler from '@/components/ui/BackgroundImageHandler';
+import { getAllChapters } from '@/lib/chapters';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,9 +38,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`flex ${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} ${cinzel.variable}`}>
+      <body className="flex">
         <BackgroundImageHandler />
         <Sidebar />
+        <MobileNav chapters={getAllChapters()} />
         {/* ml-72 pushes the content to the right of the 72-unit wide sidebar */}
         <div className="flex-1 md:ml-72 w-full min-h-screen">
           {children}
