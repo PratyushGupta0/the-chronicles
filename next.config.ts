@@ -1,11 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',      // This is the critical line for GitHub Pages
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: 'export',
   images: {
-    unoptimized: true,   // GitHub Pages doesn't support the default Next.js Image Optimization
+    unoptimized: true,
   },
-  // If your repo is 'my-book', uncomment the line below:
-  // basePath: '/my-book', 
+  // IMPORTANT: If your repo URL is github.com/username/the-chronicles
+  // then you MUST uncomment the line below and set it to your repo name.
+  // basePath: '/the-chronicles',
 };
 
 export default nextConfig;
