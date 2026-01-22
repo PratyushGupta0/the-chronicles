@@ -10,7 +10,7 @@ export default async function LoreIndex() {
             slug: 'world',
             title: 'The World',
             description: 'An overview of the lands and empires that form our world',
-            image: '/images/lore/world.png',
+            image: '/images/lore/world.webp',
             href: '/lore/world'
         },
         ...loreEntries

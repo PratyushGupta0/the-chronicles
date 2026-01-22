@@ -27,7 +27,7 @@ export default function DiscoveryGrid({ title, items, tagLabel = 'Discovery' }: 
             </div>
 
             <div className="flex flex-wrap justify-center gap-12">
-                {items.map((item) => (
+                {items.map((item, index) => (
                     <Link
                         key={item.slug}
                         href={item.href || `/lore/${item.slug}`}
@@ -40,6 +40,7 @@ export default function DiscoveryGrid({ title, items, tagLabel = 'Discovery' }: 
                                     src={getAssetPath(item.image)}
                                     alt={item.title}
                                     fill
+                                    priority={index < 2} // Preload the first row of images
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                             ) : (
