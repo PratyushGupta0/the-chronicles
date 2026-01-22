@@ -1,52 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { Chapter } from '@/lib/chapters';
-import { LoreEntry } from '@/lib/lore';
-import { MapEntry } from '@/lib/maps';
+import { MenuItem } from '@/lib/menu-data';
+import SidebarNav from './SidebarNav';
 
 interface MobileNavProps {
-    chapters: Chapter[];
-    lore: LoreEntry[];
-    maps: MapEntry[];
+    items: MenuItem[];
 }
 
-export default function MobileNav({ chapters, lore, maps }: MobileNavProps) {
+export default function MobileNav({ items }: MobileNavProps) {
     const [isOpen, setIsOpen] = useState(false);
-
-    const MENU_ITEMS = [
-        {
-            title: 'I. Introduction',
-            href: '/',
-            description: "General overview, author's notes, and project status.",
-        },
-        {
-            title: 'II. The Book',
-            href: '/chapters',
-            items: chapters.map(chapter => ({
-                label: chapter.title,
-                href: `/chapters/${chapter.slug}`
-            }))
-        },
-        {
-            title: 'III. Lore',
-            href: '/lore',
-            items: lore.map(entry => ({
-                label: entry.title,
-                href: `/lore/${entry.slug}`
-            }))
-        },
-        {
-            title: 'IV. Maps',
-            href: '/maps',
-            items: maps.map(entry => ({
-                label: entry.title,
-                href: `/maps/${entry.slug}`
-            }))
-        }
-    ];
 
     return (
         <>
@@ -93,35 +57,7 @@ export default function MobileNav({ chapters, lore, maps }: MobileNavProps) {
                         The Chronicles
                     </h1>
 
-                    <nav className="flex-1 space-y-8">
-                        {MENU_ITEMS.map((section) => (
-                            <div key={section.title} className="group">
-                                <Link
-                                    href={section.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block font-serif text-lg font-bold text-slate-900 mb-2 hover:text-amber-800 transition-colors"
-                                >
-                                    {section.title}
-                                </Link>
-
-                                {section.items && (
-                                    <ul className="mt-2 space-y-2 ml-2 pl-3 border-l border-amber-900/10">
-                                        {section.items.map((item) => (
-                                            <li key={item.href}>
-                                                <Link
-                                                    href={item.href}
-                                                    onClick={() => setIsOpen(false)}
-                                                    className="block py-1 font-serif text-slate-600 hover:text-amber-900 hover:italic text-base transition-all"
-                                                >
-                                                    {item.label}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-                        ))}
-                    </nav>
+                    <SidebarNav items={items} onItemClick={() => setIsOpen(false)} />
 
                     <div className="mt-12 pt-8 text-center opacity-40">
                         <p className="font-serif text-xs text-slate-900">Est. 2026</p>

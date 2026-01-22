@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAssetPath } from '@/lib/utils';
 
 interface CardItem {
     slug: string;
@@ -36,7 +37,7 @@ export default function DiscoveryGrid({ title, items, tagLabel = 'Discovery' }: 
                         <div className="relative h-72 md:h-80 w-full overflow-hidden border-b border-amber-900/10">
                             {item.image ? (
                                 <Image
-                                    src={item.image}
+                                    src={getAssetPath(item.image)}
                                     alt={item.title}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"

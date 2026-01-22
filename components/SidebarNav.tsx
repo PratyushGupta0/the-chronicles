@@ -14,9 +14,10 @@ interface MenuItem {
 
 interface SidebarNavProps {
     items: MenuItem[];
+    onItemClick?: () => void;
 }
 
-const NavItem = ({ item, depth = 0 }: { item: MenuItem; depth?: number }) => {
+const NavItem = ({ item, depth = 0, onItemClick }: { item: MenuItem; depth?: number; onItemClick?: () => void }) => {
     // Normalizing item structure (matching label to title if needed)
     const title = item.title || item.label || 'Untitled';
     const [isExpanded, setIsExpanded] = useState(true);
@@ -46,6 +47,7 @@ const NavItem = ({ item, depth = 0 }: { item: MenuItem; depth?: number }) => {
 
                 <Link
                     href={item.href}
+                    onClick={onItemClick}
                     className={`font-serif transition-colors block py-1 w-full ${depth === 0
                         ? 'text-lg font-extrabold text-slate-900 hover:text-amber-950'
                         : 'text-base font-semibold text-slate-800 hover:text-amber-900'
@@ -65,7 +67,7 @@ const NavItem = ({ item, depth = 0 }: { item: MenuItem; depth?: number }) => {
                 <ul className={`mt-1 space-y-1 ${depth === 0 ? 'border-l-2 border-amber-900/20 ml-1 pl-4 mb-6' : 'border-l border-amber-900/10 ml-1 pl-3'}`}>
                     {item.items!.map((subItem, idx) => (
                         <li key={`${subItem.href}-${idx}`}>
-                            <NavItem item={subItem} depth={depth + 1} />
+                            <NavItem item={subItem} depth={depth + 1} onItemClick={onItemClick} />
                         </li>
                     ))}
                 </ul>
@@ -74,11 +76,11 @@ const NavItem = ({ item, depth = 0 }: { item: MenuItem; depth?: number }) => {
     );
 };
 
-export default function SidebarNav({ items }: SidebarNavProps) {
+export default function SidebarNav({ items, onItemClick }: SidebarNavProps) {
     return (
         <nav className="flex-1 space-y-8 px-2">
             {items.map((section) => (
-                <NavItem key={section.title} item={section} />
+                <NavItem key={section.title} item={section} onItemClick={onItemClick} />
             ))}
         </nav>
     );
