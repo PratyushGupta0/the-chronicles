@@ -4,12 +4,16 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { Chapter } from '@/lib/chapters';
+import { LoreEntry } from '@/lib/lore';
+import { MapEntry } from '@/lib/maps';
 
 interface MobileNavProps {
     chapters: Chapter[];
+    lore: LoreEntry[];
+    maps: MapEntry[];
 }
 
-export default function MobileNav({ chapters }: MobileNavProps) {
+export default function MobileNav({ chapters, lore, maps }: MobileNavProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     const MENU_ITEMS = [
@@ -29,16 +33,18 @@ export default function MobileNav({ chapters }: MobileNavProps) {
         {
             title: 'III. Lore',
             href: '/lore',
-            items: [
-                { label: 'The World', href: '/lore' },
-            ]
+            items: lore.map(entry => ({
+                label: entry.title,
+                href: `/lore/${entry.slug}`
+            }))
         },
         {
             title: 'IV. Maps',
             href: '/maps',
-            items: [
-                { label: 'World Map', href: '/maps' },
-            ]
+            items: maps.map(entry => ({
+                label: entry.title,
+                href: `/maps/${entry.slug}`
+            }))
         }
     ];
 

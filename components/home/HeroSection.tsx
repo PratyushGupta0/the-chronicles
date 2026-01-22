@@ -26,7 +26,7 @@ const HeroSection = () => {
                 </p>
                 <h2 className="text-5xl md:text-7xl font-bold font-serif text-indigo-950 drop-shadow-sm decoration-amber-900/30 underline-offset-8">
                     The Shadow of the <br />
-                    <span className="text-purple-950/90">Black Amethyst of Arkarath</span>
+                    <span className="text-purple-950/90 font-serif">Black Amethyst of Arkarath</span>
                 </h2>
             </div>
         </div>

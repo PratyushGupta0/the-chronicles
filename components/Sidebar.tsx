@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import { getAllChapters } from '@/lib/chapters';
+import { getAllLore } from '@/lib/lore';
+import { getAllMaps } from '@/lib/maps';
+import SidebarNav from './SidebarNav';
 
 const Sidebar = async () => {
-  const chapters = getAllChapters();
+  const chapters = await getAllChapters();
+  const loreEntries = await getAllLore();
+  const mapEntries = await getAllMaps();
 
   const MENU_ITEMS = [
     {
@@ -13,7 +18,6 @@ const Sidebar = async () => {
     {
       title: 'II. The Book',
       href: '/chapters',
-      // Dynamically load chapters here
       items: chapters.map(chapter => ({
         label: chapter.title,
         href: `/chapters/${chapter.slug}`
@@ -23,15 +27,34 @@ const Sidebar = async () => {
       title: 'III. Lore',
       href: '/lore',
       items: [
-        { label: 'The World', href: '/lore' },
+        {
+          title: 'The World',
+          href: '/lore/world',
+          items: [
+            { title: 'The Iron Pact', href: '/lore/world/iron-pact' },
+            { title: 'Ostravia', href: '/lore/world/ostravia' },
+            { title: 'The Elysian Empire', href: '/lore/world/elysian-empire' },
+            { title: 'Alba', href: '/lore/world/alba' },
+            { title: 'The Kiyo Shogunate', href: '/lore/world/kiyo-shogunate' },
+          ]
+        },
+        ...loreEntries.filter(e => e.slug !== 'world' && e.slug !== 'characters').map(entry => ({
+          title: entry.title,
+          href: `/lore/${entry.slug}`
+        })),
+        {
+          title: 'Character Profiles',
+          href: '/lore/characters',
+        }
       ]
     },
     {
       title: 'IV. Maps',
       href: '/maps',
-      items: [
-        { label: 'World Map', href: '/maps' },
-      ]
+      items: mapEntries.map(entry => ({
+        label: entry.title,
+        href: `/maps/${entry.slug}`
+      }))
     }
   ];
 
@@ -43,44 +66,11 @@ const Sidebar = async () => {
         <span className="text-4xl text-amber-950/40 font-serif">❦</span>
       </div>
 
-      <h1 className="text-2xl font-serif font-bold mb-12 text-slate-900 text-center tracking-tight border-b border-amber-900/10 pb-6 mx-4">
+      <h1 className="text-2xl font-serif font-bold mb-12 text-slate-800 text-center tracking-tight border-b border-amber-900/10 pb-6 mx-4">
         The Chronicles
       </h1>
 
-      <nav className="flex-1 space-y-12 px-2">
-        {MENU_ITEMS.map((section) => (
-          <div key={section.title} className="group">
-            <Link
-              href={section.href}
-              className="block font-serif text-lg font-bold text-slate-900 mb-2 hover:text-amber-800 transition-colors"
-            >
-              {section.title}
-            </Link>
-
-            {section.description && (
-              <p className="font-serif text-sm text-slate-500 italic leading-relaxed pl-1 border-l-2 border-amber-900/10 ml-1">
-                {section.description}
-              </p>
-            )}
-
-            {section.items && (
-              <ul className="mt-3 space-y-2 ml-2">
-                {section.items.map((item) => (
-                  <li key={item.href} className="flex items-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-900/20 mr-3"></span>
-                    <Link
-                      href={item.href}
-                      className="font-serif text-slate-700 hover:text-amber-900 hover:italic text-base transition-all"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
-      </nav>
+      <SidebarNav items={MENU_ITEMS} />
 
       {/* Footer / Copyright area style */}
       <div className="mt-auto pt-8 text-center opacity-40">

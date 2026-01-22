@@ -5,6 +5,8 @@ import Sidebar from '@/components/Sidebar';
 import MobileNav from '@/components/MobileNav';
 import BackgroundImageHandler from '@/components/ui/BackgroundImageHandler';
 import { getAllChapters } from '@/lib/chapters';
+import { getAllLore } from '@/lib/lore';
+import { getAllMaps } from '@/lib/maps';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +21,8 @@ const geistMono = Geist_Mono({
 const ebGaramond = EB_Garamond({
   variable: "--font-garamond",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
 });
 
 const cinzel = Cinzel({
@@ -41,7 +45,11 @@ export default function RootLayout({
       <body className={`flex ${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} ${cinzel.variable} antialiased`}>
         <BackgroundImageHandler />
         <Sidebar />
-        <MobileNav chapters={getAllChapters()} />
+        <MobileNav
+          chapters={getAllChapters()}
+          lore={getAllLore()}
+          maps={getAllMaps()}
+        />
         {/* ml-72 pushes the content to the right of the 72-unit wide sidebar */}
         <div className="flex-1 md:ml-72 w-full min-h-screen">
           {children}

@@ -1,8 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-
-const contentDirectory = path.join(process.cwd(), 'content/chapters');
+import { getAllContent, getContentBySlug, getContentSlugs, ContentItem } from './content';
 
 export interface Chapter {
     slug: string;
@@ -12,37 +8,29 @@ export interface Chapter {
     content: string;
 }
 
+function mapContentToChapter(item: ContentItem): Chapter {
+    return {
+        slug: item.slug,
+        title: item.metadata.title || "Untitled Chapter",
+        chapter: item.metadata.chapter || 0,
+        description: item.metadata.description || "",
+        content: item.content,
+    };
+}
+
 export function getChapterSlugs() {
-    if (!fs.existsSync(contentDirectory)) return [];
-    return fs.readdirSync(contentDirectory).filter((file) => file.endsWith('.mdx'));
+    return getContentSlugs('chapters');
 }
 
 export function getChapterBySlug(slug: string): Chapter | null {
-    const realSlug = slug.replace(/\.mdx$/, '');
-    const fullPath = path.join(contentDirectory, `${realSlug}.mdx`);
-
-    try {
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
-        const { data, content } = matter(fileContents);
-
-        return {
-            slug: realSlug,
-            title: data.title,
-            chapter: data.chapter,
-            description: data.description,
-            content,
-        };
-    } catch (e) {
-        return null;
-    }
+    const item = getContentBySlug('chapters', slug);
+    if (!item) return null;
+    return mapContentToChapter(item);
 }
 
 export function getAllChapters(): Chapter[] {
-    const slugs = getChapterSlugs();
-    const chapters = slugs
-        .map((slug) => getChapterBySlug(slug))
-        .filter((chapter): chapter is Chapter => chapter !== null)
-        .sort((a, b) => a.chapter - b.chapter);
-
-    return chapters;
+    const items = getAllContent('chapters', (a, b) =>
+        (a.metadata.chapter || 0) - (b.metadata.chapter || 0)
+    );
+    return items.map(mapContentToChapter);
 }
