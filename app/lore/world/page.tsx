@@ -1,49 +1,22 @@
+import { getAllWorldEntities } from '@/lib/world';
 import DiscoveryGrid from '@/components/ui/DiscoveryGrid';
 
 export default function WorldIndex() {
-    const factions = [
-        {
-            slug: 'iron-pact',
-            title: 'The Iron Pact',
-            description: '',
-            image: '/images/lore/blank.webp',
-            href: '/lore/world/iron-pact'
-        },
-        {
-            slug: 'ostravia',
-            title: 'Ostravia',
-            description: '',
-            image: '/images/lore/blank.webp',
-            href: '/lore/world/ostravia'
-        },
-        {
-            slug: 'elysian-empire',
-            title: 'The Elysian Empire',
-            description: '',
-            image: '/images/lore/blank.webp',
-            href: '/lore/world/elysian-empire'
-        },
-        {
-            slug: 'alba',
-            title: 'Alba',
-            description: '',
-            image: '/images/lore/blank.webp',
-            href: '/lore/world/alba'
-        },
-        {
-            slug: 'kiyo-shogunate',
-            title: 'The Kiyo Shogunate',
-            description: '',
-            image: '/images/lore/blank.webp',
-            href: '/lore/world/kiyo-shogunate'
-        }
-    ];
+    const entities = getAllWorldEntities();
+
+    const items = entities.map(entity => ({
+        slug: entity.slug,
+        title: entity.title,
+        description: entity.description,
+        image: entity.cardImage,
+        href: `/lore/world/${entity.slug}`
+    }));
 
     return (
         <DiscoveryGrid
             title="The Realms of our World"
             tagLabel="Realm Discovery"
-            items={factions}
+            items={items}
         />
     );
 }
