@@ -70,6 +70,7 @@ export default async function WorldEntityPage({ params }: PageProps) {
                                 {Object.entries({
                                     overview: "Overview",
                                     etymology: "Etymology",
+                                    geopolitics: "Geopolitical Tensions",
                                     history: "History",
                                     geography: "Geography",
                                     government: "Government and Politics",

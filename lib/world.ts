@@ -9,6 +9,7 @@ export interface WorldEntity {
     description: string;
     sections: {
         overview: string;
+        geopolitics?: string;
         etymology: string;
         history: string;
         geography: string;
@@ -42,6 +43,7 @@ function mapContentToWorldEntity(item: ContentItem): WorldEntity {
         description: metadata.description || "",
         sections: {
             overview: metadata.sections?.overview || "",
+            geopolitics: metadata.sections?.geopolitics || "",
             etymology: metadata.sections?.etymology || "",
             history: metadata.sections?.history || "",
             geography: metadata.sections?.geography || "",
