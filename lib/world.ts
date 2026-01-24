@@ -15,6 +15,7 @@ export interface WorldEntity {
         government: string;
         economy: string;
         demographics: string;
+        society?: string;
         culture: string;
         military: string;
     };
@@ -47,6 +48,7 @@ function mapContentToWorldEntity(item: ContentItem): WorldEntity {
             government: metadata.sections?.government || "",
             economy: metadata.sections?.economy || "",
             demographics: metadata.sections?.demographics || "",
+            society: metadata.sections?.society || "",
             culture: metadata.sections?.culture || "",
             military: metadata.sections?.military || "",
         },

@@ -75,6 +75,7 @@ export default async function WorldEntityPage({ params }: PageProps) {
                                     government: "Government and Politics",
                                     economy: "Economy",
                                     demographics: "Demographics",
+                                    society: "Of the Curiosities of the Pact",
                                     culture: "Culture",
                                     military: "Military"
                                 }).map(([key, title]) => {
